@@ -9,13 +9,16 @@ namespace MathForGames2025
 {
     internal class TestScene : Scene
     {
-        private Actor _testActor;
+        private Player _testActor;
 
         public override void Start()
         {
             base.Start();
-            Vector2 startPosition = new Vector2(9, 3);
-            _testActor = new Actor('@', startPosition);
+            Vector2 startPosition = new Vector2(0, 0);
+
+            Icon playerIcon = new Icon { Color = ConsoleColor.Blue, Symbol = '@' };
+
+            _testActor = new Player(playerIcon, startPosition);
 
             _testActor.Start();
         }
@@ -29,6 +32,7 @@ namespace MathForGames2025
         public override void Update()
         {
             base.Update();
+            _testActor.Update();
         }
     }
 }

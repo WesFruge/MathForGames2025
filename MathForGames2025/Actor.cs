@@ -8,12 +8,36 @@ using MathLibrary;
 
 namespace MathForGames2025
 {
+    struct Icon
+    {
+        private char _symbol;
+        private ConsoleColor _color;
+
+        public char Symbol
+        {
+            get { return _symbol; }
+            set { _symbol = value; }    
+        }
+
+        public ConsoleColor Color
+        {
+            get { return _color; }
+            set { _color = value; }
+        }
+    }
 
     internal class Actor
     {
-        private char _icon;
+        private Icon _icon;
         private Vector2 _position;
-        public Actor(char icon, Vector2 position)
+
+        public Vector2 Position
+        {
+            get { return _position; }
+            set { _position = value; }
+        }
+
+        public Actor(Icon icon, Vector2 position)
         {
             _icon = icon;
             _position = position;
@@ -26,7 +50,6 @@ namespace MathForGames2025
 
         public virtual void Update()
         {
-
         }
 
         public virtual void Draw()
