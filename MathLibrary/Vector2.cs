@@ -23,6 +23,11 @@
             _y = y;
         }
 
+        public float GetMagnitude()
+        {
+            //MathF.Sqrt()
+        }
+
         /// <summary>
         /// Create overloaded operators for subtracting a vector 
         /// from another vector,

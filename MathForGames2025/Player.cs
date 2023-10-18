@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Raylib_cs;
 
 namespace MathForGames2025
 {
@@ -11,27 +12,36 @@ namespace MathForGames2025
     {
         public Player(Icon icon, Vector2 position) : base (icon, position) { }
 
-        public override void Update()
+        public override void Update(float deltaTime)
         {
-            base.Update();
+            base.Update(deltaTime);
+            //char direction = Engine.GetInput();
 
-            char direction = Engine.GetInput();
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_W))
+            {
+                Position += new Vector2(0, -100) * deltaTime;
+            }
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_S))
+            {
+                Position += new Vector2(0, 100) * deltaTime;
+            }
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_A))
+            {
+                Position += new Vector2(-100, 0) * deltaTime;
+            }
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
+            {
+                Position += new Vector2(100, 0) * deltaTime;
+            }
 
-            if (direction == 'w')
+
+            if (Position.X >= 800)
             {
-                Position += new Vector2(0, -1);
+                Position = new Vector2(0, Position.Y);
             }
-            else if (direction == 's')
+            if (Position.Y >= 450)
             {
-                Position += new Vector2(0, 1);
-            }
-            else if (direction == 'a')
-            {
-                Position += new Vector2(-1, 0);
-            }
-            else if (direction == 'd')
-            {
-                Position += new Vector2(1, 0);
+                Position = new Vector2(Position.X, 0);
             }
         }
     }
