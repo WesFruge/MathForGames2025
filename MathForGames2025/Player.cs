@@ -4,6 +4,8 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Raylib_cs;
+using MathLib;
 
 namespace MathForGames2025
 {
@@ -12,7 +14,7 @@ namespace MathForGames2025
 
         char playerInput = '\0';
 
-        public Player(char icon, Vector2 position) :base(icon, position)
+        public Player(Icon icon, Vector2 position) :base(icon, position)
         {
             
         }
@@ -21,27 +23,25 @@ namespace MathForGames2025
             base.Start();
         }
 
-        public override void Update()
+        public override void Update(float deltaTime)
         {
-            base.Update();
+            base.Update(deltaTime);
 
-            playerInput = Console.ReadKey().KeyChar;
-
-            if (playerInput == 'w')
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_W))
             {
-                Position = Position + new Vector2(0, -1);
+                Position += new Vector2(0, -100) * deltaTime;
             }
-            if (playerInput == 's')
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_S))
             {
-                Position = Position + new Vector2(0, 1);
+                Position += new Vector2(0, 100) * deltaTime;
             }
-            if (playerInput == 'd')
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
             {
-                Position = Position + new Vector2(1, 0);
+                Position += new Vector2(100, 0) * deltaTime;
             }
-            if (playerInput == 'a')
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_A))
             {
-                Position = Position + new Vector2(-1, 0);
+                Position += new Vector2(-100, 0) * deltaTime;
             }
         }
         public override void Draw()

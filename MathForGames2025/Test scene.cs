@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Raylib_cs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -13,13 +14,16 @@ namespace MathForGames2025
 
         private Actor _testActor;
         private Player _testPlayer;
+       
 
         public override void Start()
         {
             base.Start();
             Vector2 startPosition = new Vector2(0, 0);
 
-            _testPlayer = new Player('0', startPosition);
+            Icon playerIcon = new Icon { IconColor = Color.BLACK, Symbol = "OwO" };
+
+            _testPlayer = new Player(playerIcon, startPosition);
             _testPlayer.Start();
         }
 
@@ -29,10 +33,11 @@ namespace MathForGames2025
             _testPlayer.Draw();
         }
 
-        public override void Update()
+        public override void Update(float deltaTime)
         {
-            base.Update();
-            _testPlayer.Update();
+            base.Update(deltaTime);
+            _testPlayer.Update(deltaTime);
+            
         }
     }
 }

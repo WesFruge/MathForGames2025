@@ -4,12 +4,30 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Raylib_cs;
+using MathLib;
 
 namespace MathForGames2025
 {
+    struct Icon
+    {
+        private string _symbol;
+        private Color _color;
+
+        public string Symbol
+        {
+            get { return _symbol; }
+            set { _symbol = value; }
+        }
+        public Color IconColor
+        {
+            get { return _color; }
+            set { _color = value; }
+        }
+    }
     internal class Actor
     {
-        private char _icon;
+        private Icon _icon;
         private Vector2 _position;
 
         /// <summary>
@@ -18,7 +36,7 @@ namespace MathForGames2025
         /// <param name="icon">what will visually represent the Actor</param>
         /// <param name="position">starting location for the Actor</param>
         
-        public Actor(char icon, Vector2 position)
+        public Actor(Icon icon, Vector2 position)
         {
             _icon = icon;
             _position = position;
@@ -40,7 +58,7 @@ namespace MathForGames2025
             
         }
 
-        public virtual void Update()
+        public virtual void Update(float deltaTime)
         {
           
         }

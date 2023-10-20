@@ -58,5 +58,28 @@
             return new Vector2(lhs.X / scalar, lhs.Y / scalar);
 
         }
+
+
+
+        public float GetMagnitude()
+        {
+             return MathF.Sqrt(X*X + Y*Y);
+
+           
+        }
+
+        public void Normalize()
+        {
+            
+        }
+
+        public Vector2 GetNormalized()
+        {
+           return GetMagnitude()/ Vector2;
+        }
+
+
+
     }
+
 }
