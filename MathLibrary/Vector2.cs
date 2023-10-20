@@ -25,7 +25,26 @@
 
         public float GetMagnitude()
         {
-            //MathF.Sqrt()
+            return MathF.Sqrt(X * X + Y * Y);
+        }
+
+        /// <summary>
+        /// Change the size of this vector to have a magnitude of one.
+        /// </summary>
+        public void Normalize()
+        {
+            //velocity.Normalize() - Will change velocity to be a unit vector.
+            //Vector2 velocityNormalized = velocity.GetNormalized() - Will return a new normalized vector without changing the original.
+        }
+
+        /// <summary>
+        /// Divide the vector by the magnitude to get a vector with
+        /// a magnitude of 1.
+        /// </summary>
+        /// <returns>A new normalized vector without changing the original.</returns>
+        public Vector2 GetNormalized()
+        {
+
         }
 
         /// <summary>
@@ -57,7 +76,7 @@
 
         public static Vector2 operator /(Vector2 lhs, float scalar)
         {
-            return new Vector2(lhs.X * scalar, lhs.Y * scalar);
+            return new Vector2(lhs.X / scalar, lhs.Y / scalar);
         }
     }
 }
