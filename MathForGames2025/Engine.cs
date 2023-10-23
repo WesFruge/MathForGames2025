@@ -69,6 +69,11 @@ namespace MathForGames2025
 
         public void Run()
         {
+            Vector2 test = new Vector2(8, 5);
+            Vector2 test2 = test.GetNormalized();
+
+            float magnitude = test2.GetMagnitude();
+
             Start();
 
             float currentTime = 0;

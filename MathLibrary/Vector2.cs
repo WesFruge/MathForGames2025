@@ -33,8 +33,15 @@
         /// </summary>
         public void Normalize()
         {
-            //velocity.Normalize() - Will change velocity to be a unit vector.
-            //Vector2 velocityNormalized = velocity.GetNormalized() - Will return a new normalized vector without changing the original.
+            float magnitude = GetMagnitude();
+
+            if (magnitude == 0)
+            {
+                return;
+            }
+
+            X /= magnitude;
+            Y /= magnitude;
         }
 
         /// <summary>
@@ -44,7 +51,24 @@
         /// <returns>A new normalized vector without changing the original.</returns>
         public Vector2 GetNormalized()
         {
+            float magnitude = GetMagnitude();
 
+            if (magnitude == 0)
+            {
+                return new Vector2();
+            }
+
+            return new Vector2(X / magnitude, Y / magnitude);
+        }
+
+        public static float DotProduct(Vector2 a, Vector2 b)
+        {
+
+        }
+
+        public static float GetDistance(Vector2 a, Vector2 b)
+        {
+            //Get a vector between a and b and get the magnitude.
         }
 
         /// <summary>
