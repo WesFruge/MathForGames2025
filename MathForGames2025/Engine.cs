@@ -38,7 +38,7 @@ namespace MathForGames2025
 
         public static void Render(Icon icon , Vector2 position)
         {
-            Raylib.DrawText(icon.Symbol, (int)position.X, (int)position.Y, 250, icon.IconColor);
+            Raylib.DrawText(icon.Symbol, (int)position.X, (int)position.Y, 74, icon.IconColor);
         }
 
 
@@ -70,12 +70,11 @@ namespace MathForGames2025
 
         public void Run()
         {
+            Vector2 test = new Vector2(14, 2);
+            Vector2 test2 = test.GetNormalized();
+
+            float magnitude = test2.GetMagnitude();
             Start();
-
-            Vector2 testVector = new Vector2();
-
-            testVector X = 2;
-            testVector Y = 3;
 
             float currentTime = 0;
             float lastTime = 0;
@@ -84,7 +83,7 @@ namespace MathForGames2025
 
             while (!_applicationShouldClose && !Raylib.WindowShouldClose())
             {
-                currentTime = _stopwatch.ElapsedMilliseconds / 1000;
+                currentTime = _stopwatch.ElapsedMilliseconds / 1000f;
 
                 deltaTime = currentTime - lastTime;
 

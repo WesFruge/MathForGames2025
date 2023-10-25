@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
@@ -9,10 +8,9 @@ using MathLib;
 
 namespace MathForGames2025
 {
-    internal class Player : Actor
+    internal class Player : Character
     {
-
-        char playerInput = '\0';
+        private float _speed = 100.0f;
 
         public Player(Icon icon, Vector2 position) :base(icon, position)
         {
@@ -27,22 +25,28 @@ namespace MathForGames2025
         {
             base.Update(deltaTime);
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_W))
-            {
-                Position += new Vector2(0, -100) * deltaTime;
-            }
+            Vector2 direction = new Vector2();
+
             if (Raylib.IsKeyDown(KeyboardKey.KEY_S))
             {
-                Position += new Vector2(0, 100) * deltaTime;
+                direction += new Vector2(0, 1);
+            }
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_W))
+            {
+                direction += new Vector2(0, -1);
             }
             if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
             {
-                Position += new Vector2(100, 0) * deltaTime;
+                direction += new Vector2(1, 0);
             }
             if (Raylib.IsKeyDown(KeyboardKey.KEY_A))
             {
-                Position += new Vector2(-100, 0) * deltaTime;
+                direction += new Vector2(-1, 0);
             }
+
+            Velocity = direction.GetNormalized() * _speed;
+
+            
         }
         public override void Draw()
         {

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
@@ -29,6 +28,7 @@ namespace MathForGames2025
     {
         private Icon _icon;
         private Vector2 _position;
+        private Vector2 _facing = new Vector2(1,0);
 
         /// <summary>
         /// Constructor for an instance of an Actor
@@ -40,6 +40,7 @@ namespace MathForGames2025
         {
             _icon = icon;
             _position = position;
+            
         }
 
         public Vector2 Position
@@ -53,6 +54,21 @@ namespace MathForGames2025
                 _position = value;
             }
         }
+
+        public Vector2 Facing
+        {
+            get { return _facing; }
+            set { _facing = value; }
+        }
+
+        public Icon ActorIcon
+        {
+            get { return _icon; }
+            set { _icon = value; }
+        }
+
+
+
         public virtual void Start()
         {
             

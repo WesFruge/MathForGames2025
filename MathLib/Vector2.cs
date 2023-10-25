@@ -70,15 +70,39 @@
 
         public void Normalize()
         {
+            float magnitude = GetMagnitude();
             
+            if(magnitude == 0)
+            {
+                return;
+            }
+
+            X /= magnitude;
+            Y /= magnitude;
         }
 
         public Vector2 GetNormalized()
         {
-           return GetMagnitude()/ Vector2;
+            float magnitude = GetMagnitude();
+            if (magnitude == 0)
+            {
+                return new Vector2(0,0);
+            }
+            Vector2 temp = new Vector2(X / magnitude, Y / magnitude);
+            return temp;
         }
 
+        public static float DotProduct(Vector2 a, Vector2 b)
+        {
+          return a.X * b.X + a.Y * b.Y;
+        }
 
+        public static float GetDistance(Vector2 a, Vector2 b)
+        {
+            return (b - a).GetMagnitude(); 
+            
+            
+        }
 
     }
 
