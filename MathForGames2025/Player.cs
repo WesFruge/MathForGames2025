@@ -44,6 +44,17 @@ namespace MathForGames2025
                 direction += new Vector2(-1, 0);
             }
 
+            if(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT_SHIFT))
+            {
+                _speed = 200f;
+            }
+            else
+            {
+                _speed = 100f;
+            }
+
+
+
             Velocity = direction.GetNormalized() * _speed;
 
             

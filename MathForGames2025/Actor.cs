@@ -29,6 +29,8 @@ namespace MathForGames2025
         private Icon _icon;
         private Vector2 _position;
         private Vector2 _facing = new Vector2(1,0);
+        private bool _started;
+        private Collider _collider;
 
         /// <summary>
         /// Constructor for an instance of an Actor
@@ -43,6 +45,19 @@ namespace MathForGames2025
             
         }
 
+        public bool CheckCollision(Actor other)
+        {
+            return AttachedCollider.CheckCollision(other.AttachedCollider);
+        }
+
+
+        public virtual void OnCollison(Actor other)
+        {
+
+        }
+
+
+
         public Vector2 Position
         {
             get
@@ -54,6 +69,12 @@ namespace MathForGames2025
                 _position = value;
             }
         }
+
+        public bool Started
+        {
+            get { return _started; }
+        }
+
 
         public Vector2 Facing
         {
@@ -67,11 +88,16 @@ namespace MathForGames2025
             set { _icon = value; }
         }
 
+        public Collider AttachedCollider
+        {
+            get { return _collider; }
+            set { _collider = value; }
+        }
 
 
         public virtual void Start()
         {
-            
+            _started = true;
         }
 
         public virtual void Update(float deltaTime)

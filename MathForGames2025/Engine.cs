@@ -17,24 +17,29 @@ namespace MathForGames2025
 
         private static Icon[,] _buffer;
 
-        private Test_scene  _testScene;
+        private static Scene  _currentScene;
 
         private Stopwatch _stopwatch = new Stopwatch();
 
-        
         
 
         private void Start()
         {
             Raylib.InitWindow(_screenWidth, _screenHeight, "Math For Games");
             Raylib.SetTargetFPS(0);
-            _testScene = new Test_scene();
+            _currentScene = new Scene();
             _buffer = new Icon [10, 10];
-            _testScene.Start();
+            _currentScene.Start();
             _stopwatch.Start();
             
 
         }
+
+        public static Scene GetCurrentScene()
+        {
+            return _currentScene;
+        }
+
 
         public static void Render(Icon icon , Vector2 position)
         {
@@ -48,18 +53,18 @@ namespace MathForGames2025
 
             Raylib.ClearBackground(Color.DARKPURPLE);
 
-            _testScene.Draw();
+            _currentScene.Draw();
 
             Raylib.EndDrawing();
         }
         private void Update(float deltaTime)
         {
-            _testScene.Update(deltaTime);
+            _currentScene.Update(deltaTime);
         }
 
         private void End()
         {
-            _testScene.End();
+            _currentScene.End();
             Raylib.CloseWindow();
         }
 
