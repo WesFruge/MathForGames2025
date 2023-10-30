@@ -15,7 +15,6 @@ namespace MathForGames2025
 
         public override void Start()
         {
-            base.Start();
             Vector2 startPosition = new Vector2(0, 0);
 
             //Create the icons for the characters.
@@ -26,23 +25,10 @@ namespace MathForGames2025
             _testActor = new Player(playerIcon, startPosition);
             _testEnemy = new Enemy(_testActor, enemyIcon, startPosition);
 
+            AddActor(_testEnemy);
+            AddActor(_testActor);
 
-            _testActor.Start();
-            _testEnemy.Start();
-        }
-
-        public override void Draw()
-        {
-            base.Draw();
-            _testActor.Draw();
-            _testEnemy.Draw();
-        }
-
-        public override void Update(float deltaTime)
-        {
-            base.Update(deltaTime);
-            _testActor.Update(deltaTime);
-            _testEnemy.Update(deltaTime);
+            base.Start();
         }
     }
 }
