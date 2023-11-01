@@ -22,15 +22,23 @@ namespace MathForGames2025
             Vector2 enemyStartPosition = new Vector2(400, 500);
 
 
-            Icon playerIcon = new Icon { IconColor = Color.BLACK, Symbol = "|>0<|" };
+            Icon playerIcon = new Icon { IconColor = Color.BLACK, Symbol = "|>=0=<|" };
             Icon enemyIcon = new Icon { IconColor = Color.RED, Symbol = ">-8v8-<" };
 
             _testPlayer = new Player(playerIcon, startPosition);
 
-            _testEnemy = new Enemy(_testPlayer, -1f, 50f,enemyIcon, enemyStartPosition);
+            _testEnemy = new Enemy(_testPlayer, -1f, 160f,enemyIcon, enemyStartPosition);
 
+            CircleCollider playerCollider = new CircleCollider(50, _testPlayer);
+            _testPlayer.AttachedCollider = playerCollider;
+
+            CircleCollider enemyCollider = new CircleCollider(50, _testEnemy);
+            _testEnemy.AttachedCollider = enemyCollider;
+
+            
             AddActor(_testEnemy);
             AddActor(_testPlayer);
+
             base.Start();
 
             float maxAngle = 1;

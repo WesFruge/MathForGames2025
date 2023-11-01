@@ -54,11 +54,30 @@ namespace MathForGames2025
             }
 
 
+            Icon newIcon = ActorIcon;
+
+            newIcon.IconColor = Color.GREEN;
+
+            ActorIcon = newIcon;
+
 
             Velocity = direction.GetNormalized() * _speed;
 
             
         }
+
+        public override void OnCollison(Actor other)
+        {
+
+            Icon newIcon = ActorIcon;
+
+            newIcon.IconColor = Color.PINK;
+
+            ActorIcon = newIcon;
+
+            base.OnCollison(other);
+        }
+
         public override void Draw()
         {
             base.Draw();

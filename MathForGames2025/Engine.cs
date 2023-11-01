@@ -27,7 +27,7 @@ namespace MathForGames2025
         {
             Raylib.InitWindow(_screenWidth, _screenHeight, "Math For Games");
             Raylib.SetTargetFPS(0);
-            _currentScene = new Scene();
+            _currentScene = new TestScene();
             _buffer = new Icon [10, 10];
             _currentScene.Start();
             _stopwatch.Start();
@@ -77,6 +77,11 @@ namespace MathForGames2025
         {
             Vector2 test = new Vector2(14, 2);
             Vector2 test2 = test.GetNormalized();
+
+            Matrix3 b = new Matrix3(10, 0, 0, 0, 4, 0, 0, 0,6);
+            Matrix3 a = new Matrix3(6, 0, 0, 0, 5, 0, 0, 0, 4);
+
+            Matrix3 c = b * a;
 
             float magnitude = test2.GetMagnitude();
             Start();

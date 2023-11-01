@@ -53,7 +53,7 @@ namespace MathForGames2025
 
         public virtual void OnCollison(Actor other)
         {
-
+            
         }
 
 
@@ -108,6 +108,10 @@ namespace MathForGames2025
         public virtual void Draw()
         {
             Engine.Render(_icon, _position);
+            if(AttachedCollider != null)
+            {
+                AttachedCollider.Draw();
+            }
         }
 
         public virtual void End()

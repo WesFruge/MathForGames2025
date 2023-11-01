@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MathLib;
+using Raylib_cs;
 
 namespace MathForGames2025
 {
@@ -23,18 +25,24 @@ namespace MathForGames2025
             
         }
 
+        
+
         public override bool CheckCollisionCircle(CircleCollider collider)
         {
-            if(collider.ColliderID == 1)
+            float radius = Radius + collider.Radius;
+            float distance = Vector2.GetDistance(Owner.Position, collider.Owner.Position);
+            if(radius >= distance)
             {
-                
+                return true;
             }
-
-
 
             return base.CheckCollisionCircle(collider);
         }
 
+        public override void Draw()
+        { 
+            Raylib.DrawCircleLines((int)Owner.Position.X, (int)Owner.Position.Y, Radius, Color.GREEN);
+        }
 
 
 

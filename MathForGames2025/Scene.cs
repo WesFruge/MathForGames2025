@@ -67,7 +67,11 @@ namespace MathForGames2025
 
         public virtual void Start()
         {
-            for(int  i = 0; i < _actors.Length; i++)
+            if (_actors == null)
+            {
+                _actors = new Actor[0];
+            }
+            for (int  i = 0; i < _actors.Length; i++)
             {
                 _actors[i].Start();
             }
