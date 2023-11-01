@@ -53,5 +53,7 @@ namespace MathForGames2025
         {
             return false;
         }
+
+        public virtual void Draw() { }
     }
 }

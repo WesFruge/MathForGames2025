@@ -63,11 +63,12 @@
 
         public static float DotProduct(Vector2 a, Vector2 b)
         {
-
+            return 0;
         }
 
         public static float GetDistance(Vector2 a, Vector2 b)
         {
+            return 0;
             //Get a vector between a and b and get the magnitude.
         }
 

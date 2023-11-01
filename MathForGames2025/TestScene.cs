@@ -26,9 +26,12 @@ namespace MathForGames2025
             _testActor = new Player(playerIcon, startPosition);
             _testEnemy = new Enemy(_testActor, enemyIcon, enemyStartPosition);
 
-            CircleCollider playerCollider = new CircleCollider(200, _testActor);
+
+            CircleCollider playerCollider = new CircleCollider(50, _testActor);
+            CircleCollider enemyCollider = new CircleCollider(50, _testEnemy);
 
             _testActor.AttachedCollider = playerCollider;
+            _testEnemy.AttachedCollider = enemyCollider;
 
             AddActor(_testEnemy);
             AddActor(_testActor);

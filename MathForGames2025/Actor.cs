@@ -32,6 +32,7 @@ namespace MathForGames2025
         private Icon _icon;
         private Vector2 _position;
         private Vector2 _facing = new Vector2(1, 0);
+        private Vector2 _scale;
         private bool _started;
         private Collider _collider;
 
@@ -97,6 +98,11 @@ namespace MathForGames2025
         public virtual void Draw()
         {
             Engine.Render(_icon, _position);
+
+            if (AttachedCollider != null)
+            {
+                AttachedCollider.Draw();
+            }
         }
 
         public virtual void End()
