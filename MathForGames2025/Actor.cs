@@ -30,22 +30,53 @@ namespace MathForGames2025
     internal class Actor
     {
         private Icon _icon;
-        private Vector2 _position;
-        private Vector2 _facing = new Vector2(1, 0);
-        private Vector2 _scale;
+        private Matrix3 _transform = Matrix3.Identity;
         private bool _started;
         private Collider _collider;
+        private Sprite _sprite;
 
         public Vector2 Position
         {
-            get { return _position; }
-            set { _position = value; }
+            get { return new Vector2(_transform.M02, _transform.M12); }
+            set 
+            {
+                _transform.M02 = value.X;
+                _transform.M12 = value.Y;
+            }
         }
 
         public Vector2 Facing
         {
-            get { return _facing; }
-            set { _facing = value; }
+            get 
+            {
+                return new Vector2(_transform.M00, _transform.M10).GetNormalized();
+            }
+        }
+
+        public Vector2 Scale
+        {
+            get
+            {
+                //Find the scale by getting the magnitude of the x and y columns in the transform matrix.
+                float xAxisScale = new Vector2(_transform.M00, _transform.M01).GetMagnitude();
+                float yAxisScale = new Vector2(_transform.M01, _transform.M11).GetMagnitude();
+
+                return new Vector2(xAxisScale, yAxisScale);
+            }
+            set
+            {
+                //Get the current direction the x and y axis are facing and scale it by the desired scale on the x and y.
+                Vector2 xAxis = new Vector2(_transform.M00, _transform.M01).GetNormalized() * value.X;
+                Vector2 yAxis = new Vector2(_transform.M01, _transform.M11).GetNormalized() * value.Y;
+
+                //Set the transform x column values to be the new x axis values that we just found.
+                _transform.M00 = xAxis.X;
+                _transform.M10 = xAxis.Y;
+
+                //Set the transform y column values to be the new y axis values that we just found.
+                _transform.M01 = yAxis.X;
+                _transform.M11 = yAxis.Y;
+            }
         }
 
         public Icon ActorIcon
@@ -73,7 +104,14 @@ namespace MathForGames2025
         public Actor(Icon icon, Vector2 position)
         {
             _icon = icon;
-            _position = position;
+            Position = position;
+        }
+
+        /// <param name="spritePath">The path the sprite will be at in the build. Ex: "Images/player.png"</param>
+        /// <param name="position">The position of the sprite on the screen.</param>
+        public Actor(string spritePath, Vector2 position)
+        {
+
         }
 
         public bool CheckCollision(Actor other)
@@ -97,12 +135,14 @@ namespace MathForGames2025
 
         public virtual void Draw()
         {
-            Engine.Render(_icon, _position);
+            Engine.Render(_icon, Position);
 
             if (AttachedCollider != null)
-            {
                 AttachedCollider.Draw();
-            }
+
+            //Draw the sprite if this actor has one
+            if (_sprite != null)
+                _sprite.Draw(_transform);
         }
 
         public virtual void End()

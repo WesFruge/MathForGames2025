@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace MathLibrary
 {
 
-    internal struct Matrix3
+    public struct Matrix3
     {
         public float M00, M01, M02,
                      M10, M11, M12,

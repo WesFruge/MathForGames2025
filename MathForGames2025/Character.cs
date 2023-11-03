@@ -21,6 +21,11 @@ namespace MathForGames2025
         {
         }
 
+        public Character(string spritePath, Vector2 position) : base(spritePath, position)
+        {
+
+        }
+
         public override void Update(float deltaTime)
         {
             Position += Velocity * deltaTime;

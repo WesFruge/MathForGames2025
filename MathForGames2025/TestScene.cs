@@ -18,14 +18,21 @@ namespace MathForGames2025
             Vector2 startPosition = new Vector2(0, 0);
             Vector2 enemyStartPosition = new Vector2(400, 200);
 
+            float maxAngle = 1;
+
+            float dotProduct = 0.5f;
+
+            //Convert dot product to radians.
+            float radians = MathF.Acos(dotProduct);
+
             //Create the icons for the characters.
             Icon playerIcon = new Icon { IconColor = Color.BLUE, Symbol = "@" };
             Icon enemyIcon = new Icon { IconColor = Color.RED, Symbol = "E" };
 
             //Create the new actors for the scene.
-            _testActor = new Player(playerIcon, startPosition);
-            _testEnemy = new Enemy(_testActor, enemyIcon, enemyStartPosition);
-
+            _testActor = new Player("Images/player.png", startPosition);
+            _testActor.Scale = new Vector2(50, 50);
+            _testEnemy = new Enemy(_testActor, enemyIcon, enemyStartPosition, 1, 200);
 
             CircleCollider playerCollider = new CircleCollider(50, _testActor);
             CircleCollider enemyCollider = new CircleCollider(50, _testEnemy);

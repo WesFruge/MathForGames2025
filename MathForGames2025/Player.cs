@@ -11,7 +11,16 @@ namespace MathForGames2025
     internal class Player : Character
     {
         private float _speed = 100.0f;
-        public Player(Icon icon, Vector2 position) : base (icon, position) { }
+        public Player(Icon icon, Vector2 position) : base(icon, position) { }
+
+        public Player(string spritePath, Vector2 position) : base(spritePath, position) { }
+
+        public override void OnCollision(Actor other)
+        {
+            base.OnCollision(other);
+
+            _speed = 20;
+        }
 
         public override void Update(float deltaTime)
         {
@@ -56,6 +65,15 @@ namespace MathForGames2025
             if (Position.Y >= 450)
             {
                 Position = new Vector2(Position.X, 0);
+            }
+
+            if (Position.X < 0)
+            {
+                Position = new Vector2(800, Position.Y);
+            }
+            if (Position.Y < 0)
+            {
+                Position = new Vector2(Position.X, 450);
             }
         }
     }
