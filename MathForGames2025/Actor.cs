@@ -30,18 +30,23 @@ namespace MathForGames2025
     internal class Actor
     {
         private Icon _icon;
+        private Sprite _sprite;
+
         private Matrix3 _transform = Matrix3.Identity;
+        private Matrix3 _translation = Matrix3.Identity;
+        private Matrix3 _rotation = Matrix3.Identity;
+        private Matrix3 _scale = Matrix3.Identity;
+
         private bool _started;
         private Collider _collider;
-        private Sprite _sprite;
 
         public Vector2 Position
         {
-            get { return new Vector2(_transform.M02, _transform.M12); }
+            get { return new Vector2(_translation.M02, _translation.M12); }
             set 
             {
-                _transform.M02 = value.X;
-                _transform.M12 = value.Y;
+                _translation.M02 = value.X;
+                _translation.M12 = value.Y;
             }
         }
 
@@ -49,33 +54,25 @@ namespace MathForGames2025
         {
             get 
             {
-                return new Vector2(_transform.M00, _transform.M10).GetNormalized();
+                return new Vector2(_rotation.M00, _rotation.M10).GetNormalized();
             }
         }
 
-        public Vector2 Scale
+        /// <summary>
+        /// The current width and height of the actor.
+        /// </summary>
+        public Vector2 Size
         {
             get
             {
-                //Find the scale by getting the magnitude of the x and y columns in the transform matrix.
-                float xAxisScale = new Vector2(_transform.M00, _transform.M01).GetMagnitude();
-                float yAxisScale = new Vector2(_transform.M01, _transform.M11).GetMagnitude();
-
-                return new Vector2(xAxisScale, yAxisScale);
+                //Returns a new vector that represents the length of the x axis and the length of the y axis.
+                return new Vector2(_scale.M00, _scale.M11);
             }
             set
             {
-                //Get the current direction the x and y axis are facing and scale it by the desired scale on the x and y.
-                Vector2 xAxis = new Vector2(_transform.M00, _transform.M01).GetNormalized() * value.X;
-                Vector2 yAxis = new Vector2(_transform.M01, _transform.M11).GetNormalized() * value.Y;
-
-                //Set the transform x column values to be the new x axis values that we just found.
-                _transform.M00 = xAxis.X;
-                _transform.M10 = xAxis.Y;
-
-                //Set the transform y column values to be the new y axis values that we just found.
-                _transform.M01 = yAxis.X;
-                _transform.M11 = yAxis.Y;
+                //Set the scale matrix values to be the values given.
+                _scale.M00 = value.X;
+                _scale.M11 = value.Y;
             }
         }
 
@@ -111,7 +108,8 @@ namespace MathForGames2025
         /// <param name="position">The position of the sprite on the screen.</param>
         public Actor(string spritePath, Vector2 position)
         {
-
+            _sprite = new Sprite(spritePath);
+            Position = position;
         }
 
         public bool CheckCollision(Actor other)
@@ -131,13 +129,14 @@ namespace MathForGames2025
 
         public virtual void Update(float deltaTime)
         {
+            UpdateTransforms();
         }
 
         public virtual void Draw()
         {
             Engine.Render(_icon, Position);
 
-            if (AttachedCollider != null)
+            if (AttachedCollider != null) 
                 AttachedCollider.Draw();
 
             //Draw the sprite if this actor has one
@@ -148,6 +147,54 @@ namespace MathForGames2025
         public virtual void End()
         {
 
+        }
+
+        /// <summary>
+        /// Move the actor by the given amount start from it's current position.
+        /// </summary>
+        /// <param name="x">The amount to move on the x axis.</param>
+        /// <param name="y">The amount to move on the y axis.</param>
+        public void Translate(float x, float y)
+        {
+            _translation *= Matrix3.CreateTranslation(x, y);
+        }
+
+        /// <summary>
+        /// Sets the actors position to be the given values.
+        /// </summary>
+        /// <param name="x">The new x axis position.</param>
+        /// <param name="y">The new y axis position.</param>
+        public void SetTranslation(float x, float y)
+        {
+            _translation = Matrix3.CreateTranslation(x, y);
+        }
+
+        public void Scale(float x, float y)
+        {
+
+        }
+
+        public void SetScale(float x, float y)
+        {
+
+        }
+
+        public void Rotate(float radians)
+        {
+
+        }
+
+        public void SetRotate(float radians)
+        {
+
+        }
+
+        /// <summary>
+        /// Concatenates all of the transformation matrices and stores the result into the actor's transform.
+        /// </summary>
+        private void UpdateTransforms()
+        {
+            _transform = _translation * _rotation * _scale;
         }
     }
 }

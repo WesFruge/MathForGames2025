@@ -31,8 +31,9 @@ namespace MathForGames2025
 
             //Create the new actors for the scene.
             _testActor = new Player("Images/player.png", startPosition);
+
             _testActor.Scale = new Vector2(50, 50);
-            _testEnemy = new Enemy(_testActor, enemyIcon, enemyStartPosition, 1, 200);
+            _testEnemy = new Enemy(_testActor, enemyIcon, enemyStartPosition);
 
             CircleCollider playerCollider = new CircleCollider(50, _testActor);
             CircleCollider enemyCollider = new CircleCollider(50, _testEnemy);

@@ -36,6 +36,21 @@ namespace MathLibrary
             }
         }
 
+        public static Matrix3 CreateRotation(float radians)
+        {
+
+        }
+
+        public static Matrix3 CreateTranslation(float x, float y)
+        {
+
+        }
+
+        public static Matrix3 CreateScale(float x, float y)
+        {
+
+        }
+
         public static Matrix3 operator +(Matrix3 a, Matrix3 b)
         {
 

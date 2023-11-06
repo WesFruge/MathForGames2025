@@ -11,6 +11,7 @@ namespace MathForGames2025
     internal class Player : Character
     {
         private float _speed = 100.0f;
+
         public Player(Icon icon, Vector2 position) : base(icon, position) { }
 
         public Player(string spritePath, Vector2 position) : base(spritePath, position) { }
@@ -24,6 +25,7 @@ namespace MathForGames2025
 
         public override void Update(float deltaTime)
         {
+            base.Update(deltaTime);
             //char direction = Engine.GetInput();
 
             Vector2 direction = new Vector2();
