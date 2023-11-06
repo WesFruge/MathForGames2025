@@ -16,6 +16,10 @@ namespace MathForGames2025
         {
             
         }
+        public Player (string spritePath, Vector2 position) :base(spritePath, position)
+        {
+            
+        }
         public override void Start()
         {
             base.Start();
@@ -53,6 +57,23 @@ namespace MathForGames2025
                 _speed = 100f;
             }
 
+            if(Raylib.IsKeyDown(KeyboardKey.KEY_E))
+            {
+                Rotate(5 * deltaTime);
+            }
+            else if (Raylib.IsKeyDown(KeyboardKey.KEY_Q))
+            {
+                Rotate(-5 * deltaTime);
+            }
+
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
+            {
+                Scale(2,2);
+            }
+            else if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN))
+            {
+                Scale(-0.5f,-0.5f);
+            }
 
             Icon newIcon = ActorIcon;
 
@@ -63,7 +84,7 @@ namespace MathForGames2025
 
             Velocity = direction.GetNormalized() * _speed;
 
-            
+            Translate(Velocity.X, Velocity.Y);
         }
 
         public override void OnCollison(Actor other)

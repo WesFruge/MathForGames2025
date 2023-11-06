@@ -29,9 +29,24 @@ namespace MathForGames2025
         {
             get
             {
-                return Identity;
+                return new Matrix3(1, 0, 0, 0, 1, 0, 0, 0, 1);
             }
         }
+
+        public static Matrix3 CreateRotation(float radians)
+        {
+            return new Matrix3(MathF.Cos(radians), -MathF.Sin(radians), 0, MathF.Sin(radians), -MathF.Cos(radians), 0, 0, 0, 1);
+        }
+        public static Matrix3 CreateTranslation(float x, float y)
+        {
+            return new Matrix3(0, 0, x, 0, 0, y, 0, 0, 1);
+        }
+
+        public static Matrix3 CreateScale(float x, float y)
+        {
+            return new Matrix3(x, 0, 0, 0, y, 0, 0, 0, 1);
+        }
+
 
         public static Matrix3 operator +(Matrix3 a, Matrix3 b)
         {

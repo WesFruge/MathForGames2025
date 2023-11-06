@@ -20,11 +20,15 @@ namespace MathForGames2025
         public Character(Icon icon, Vector2 position) : base (icon, position)
         {
         }
-
+        public Character(string spritePath, Vector2 position) : base(spritePath, position)
+        {
+        }
         public override void Update(float deltaTime)
         {
+            base.Update(deltaTime);
+
             Position += Velocity * deltaTime;
-            Facing = Velocity.GetNormalized();
+           
             
         }
 

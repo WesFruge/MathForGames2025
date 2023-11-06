@@ -18,14 +18,15 @@ namespace MathForGames2025
         public override void Start()
         {
            
-            Vector2 startPosition = new Vector2(0, 0);
+            Vector2 startPosition = new Vector2(150, 150);
             Vector2 enemyStartPosition = new Vector2(400, 500);
 
 
             Icon playerIcon = new Icon { IconColor = Color.BLACK, Symbol = "|>=0=<|" };
             Icon enemyIcon = new Icon { IconColor = Color.RED, Symbol = ">-8v8-<" };
 
-            _testPlayer = new Player(playerIcon, startPosition);
+            _testPlayer = new Player("Images/player.png", startPosition);
+            _testPlayer.Size = new Vector2(50, 50);
 
             _testEnemy = new Enemy(_testPlayer, -1f, 160f,enemyIcon, enemyStartPosition);
 
