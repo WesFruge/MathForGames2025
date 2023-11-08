@@ -19,7 +19,7 @@ namespace MathForGames2025
         public override void Update(float deltaTime)
         {
             //Find a vector that goes from our enemy to our target.
-            Vector2 enemyToTarget = _target.Position - Position;
+            Vector2 enemyToTarget = _target.LocalPosition - LocalPosition;
             //Normalize that vector to find the direction to move in.
             Vector2 direction = enemyToTarget.GetNormalized();
             //Set our velocity to be that vector scaled by speed.

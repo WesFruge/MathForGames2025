@@ -58,24 +58,24 @@ namespace MathForGames2025
 
             Velocity = direction.GetNormalized() * _speed;
 
-            Position += Velocity * deltaTime;
+            LocalPosition += Velocity * deltaTime;
 
-            if (Position.X >= 800)
+            if (LocalPosition.X >= 800)
             {
-                Position = new Vector2(0, Position.Y);
+                LocalPosition = new Vector2(0, LocalPosition.Y);
             }
-            if (Position.Y >= 450)
+            if (LocalPosition.Y >= 450)
             {
-                Position = new Vector2(Position.X, 0);
+                LocalPosition = new Vector2(LocalPosition.X, 0);
             }
 
-            if (Position.X < 0)
+            if (LocalPosition.X < 0)
             {
-                Position = new Vector2(800, Position.Y);
+                LocalPosition = new Vector2(800, LocalPosition.Y);
             }
-            if (Position.Y < 0)
+            if (LocalPosition.Y < 0)
             {
-                Position = new Vector2(Position.X, 450);
+                LocalPosition = new Vector2(LocalPosition.X, 450);
             }
         }
     }

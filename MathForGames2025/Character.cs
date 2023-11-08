@@ -29,7 +29,7 @@ namespace MathForGames2025
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
-            Position += Velocity * deltaTime;
+            LocalPosition += Velocity * deltaTime;
         }
     }
 }

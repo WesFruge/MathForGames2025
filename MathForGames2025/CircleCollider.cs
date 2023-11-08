@@ -29,7 +29,7 @@ namespace MathForGames2025
 
         public override void Draw()
         {
-            Raylib.DrawCircleLines((int)Owner.Position.X, (int)Owner.Position.Y, Radius, Color.GREEN);
+            Raylib.DrawCircleLines((int)Owner.LocalPosition.X, (int)Owner.LocalPosition.Y, Radius, Color.GREEN);
         }
     }
 }

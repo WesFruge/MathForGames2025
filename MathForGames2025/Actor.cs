@@ -31,8 +31,10 @@ namespace MathForGames2025
     {
         private Icon _icon;
         private Sprite _sprite;
+        private Actor _parent;
 
-        private Matrix3 _transform = Matrix3.Identity;
+        private Matrix3 _globalTransform = Matrix3.Identity;
+        private Matrix3 _localTransform = Matrix3.Identity;
         private Matrix3 _translation = Matrix3.Identity;
         private Matrix3 _rotation = Matrix3.Identity;
         private Matrix3 _scale = Matrix3.Identity;
@@ -40,7 +42,27 @@ namespace MathForGames2025
         private bool _started;
         private Collider _collider;
 
-        public Vector2 Position
+        public Matrix3 LocalTransform
+        {
+            get { return _localTransform; }
+        }
+
+        public Matrix3 GlobalTransform
+        {
+            get { return _globalTransform; }
+        }
+
+        public Vector2 WorldPosition
+        {
+            get { return new Vector2(_globalTransform.M02, _globalTransform.M12); }
+            set
+            {
+                _globalTransform.M02 = value.X;
+                _globalTransform.M12 = value.Y;
+            }
+        }
+
+        public Vector2 LocalPosition
         {
             get { return new Vector2(_translation.M02, _translation.M12); }
             set 
@@ -48,6 +70,12 @@ namespace MathForGames2025
                 _translation.M02 = value.X;
                 _translation.M12 = value.Y;
             }
+        }
+
+        public Actor Parent
+        {
+            get { return _parent; }
+            set { _parent = value; }
         }
 
         public Vector2 Facing
@@ -101,7 +129,7 @@ namespace MathForGames2025
         public Actor(Icon icon, Vector2 position)
         {
             _icon = icon;
-            Position = position;
+            LocalPosition = position;
         }
 
         /// <param name="spritePath">The path the sprite will be at in the build. Ex: "Images/player.png"</param>
@@ -109,7 +137,7 @@ namespace MathForGames2025
         public Actor(string spritePath, Vector2 position)
         {
             _sprite = new Sprite(spritePath);
-            Position = position;
+            LocalPosition = position;
         }
 
         public bool CheckCollision(Actor other)
@@ -134,14 +162,14 @@ namespace MathForGames2025
 
         public virtual void Draw()
         {
-            Engine.Render(_icon, Position);
+            Engine.Render(_icon, LocalPosition);
 
             if (AttachedCollider != null) 
                 AttachedCollider.Draw();
 
             //Draw the sprite if this actor has one
             if (_sprite != null)
-                _sprite.Draw(_transform);
+                _sprite.Draw(_localTransform);
         }
 
         public virtual void End()
@@ -194,7 +222,7 @@ namespace MathForGames2025
         /// </summary>
         private void UpdateTransforms()
         {
-            _transform = _translation * _rotation * _scale;
+            _localTransform = _translation * _rotation * _scale;
         }
     }
 }

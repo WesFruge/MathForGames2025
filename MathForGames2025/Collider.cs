@@ -25,6 +25,7 @@ namespace MathForGames2025
         public int ColliderID
         {
             get { return _colliderID; }
+            set { _colliderID = value; }
         }
 
         public Collider(int colliderID, Actor owner)
