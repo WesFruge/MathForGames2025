@@ -26,9 +26,9 @@ namespace MathForGames2025
 
         public override void Draw()
         {
-            Vector2 endPosition = Position + Facing * 100;
+            Vector2 endPosition = GlobalPosition + Facing * 100;
 
-            Raylib.DrawLine((int)Position.X, (int)Position.Y, (int)endPosition.X, (int)endPosition.Y, ActorIcon.IconColor);
+            Raylib.DrawLine((int)GlobalPosition.X, (int)GlobalPosition.Y, (int)endPosition.X, (int)endPosition.Y, ActorIcon.IconColor);
             base.Draw();
         }
 
@@ -40,13 +40,13 @@ namespace MathForGames2025
            
 
 
-           Vector2 enemyToTarget = _target.Position - Position;
+           Vector2 enemyToTarget = _target.GlobalPosition - GlobalPosition;
 
            Vector2 direction = enemyToTarget.GetNormalized();
 
            float dotProduct = Vector2.DotProduct(direction, Facing);
 
-            float getDistance = Vector2.GetDistance(Position, _target.Position);
+            float getDistance = Vector2.GetDistance(LocalPosition, _target.GlobalPosition);
 
             Icon newIcon = ActorIcon;
 

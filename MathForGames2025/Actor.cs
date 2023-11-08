@@ -27,7 +27,10 @@ namespace MathForGames2025
     internal class Actor
     {
         private Icon _icon;
-        private Matrix3 _transform = Matrix3.Identity;
+        private Actor _parent;
+
+        private Matrix3 _globalTransform = Matrix3.Identity;
+        private Matrix3 _localTransform = Matrix3.Identity;
         private Matrix3 _translation = Matrix3.Identity;
         private Matrix3 _rotation = Matrix3.Identity;
         private Matrix3 _scale = Matrix3.Identity;
@@ -36,6 +39,17 @@ namespace MathForGames2025
         private Collider _collider;
         private Sprite _sprite;
         
+
+        public Matrix3 LocalTransform
+        {
+            get { return _localTransform; }
+        }
+
+        public Matrix3 GlobalTransform
+        {
+            get { return _globalTransform; }
+        }
+
 
         /// <summary>
         /// Constructor for an instance of an Actor
@@ -46,19 +60,29 @@ namespace MathForGames2025
         public Actor(Icon icon, Vector2 position)
         {
             _icon = icon;
-            Position = position;
+            LocalPosition = position;
             
         }
         public Actor(string spritePath, Vector2 position)
         {
             _sprite = new Sprite(spritePath);
-            Position = position;
+            LocalPosition = position;
 
         }
 
 
         public bool CheckCollision(Actor other)
         {
+            if(AttachedCollider == null)
+            {
+                return false;
+                
+            }
+            if(other.AttachedCollider == null)
+            {
+                return false;
+                
+            }
             return AttachedCollider.CheckCollision(other.AttachedCollider);
         }
 
@@ -70,18 +94,37 @@ namespace MathForGames2025
 
 
 
-        public Vector2 Position
+        public Vector2 LocalPosition
         {
             get
             {
-                return new Vector2(_transform.M02, _transform.M12);
+                return new Vector2(_translation.M02, _translation.M12);
             }
             set
             {
-                _transform.M02  = value.X;
-                _transform.M12 = value.Y;
+                _translation.M02 = value.X;
+                _translation.M12 = value.Y;
             }
         }
+        public Vector2 GlobalPosition
+        {
+            get
+            {
+                return new Vector2(_globalTransform.M02, _globalTransform.M12);
+            }
+            set
+            {
+                _globalTransform.M02 = value.X;
+                _globalTransform.M12 = value.Y;
+            }
+        }
+
+        public Actor Parent
+        {
+            get { return _parent; }
+            set { _parent = value; }
+        }
+
 
         public bool Started
         {
@@ -139,14 +182,14 @@ namespace MathForGames2025
 
         public virtual void Draw()
         {
-            Engine.Render(_icon, Position);
+            Engine.Render(_icon, GlobalPosition);
             if(AttachedCollider != null)
             {
                 AttachedCollider.Draw();
             }  
             if (_sprite != null)
             {
-                _sprite.Draw(_transform);
+                _sprite.Draw(GlobalTransform);
             }    
         }
 
@@ -184,7 +227,18 @@ namespace MathForGames2025
      
         private void UpdateTransforms()
         {
-            _transform = _translation * _rotation * _scale;
+            _localTransform = _translation * _rotation * _scale;
+
+            if(Parent != null)
+            {
+                _globalTransform = Parent._globalTransform * _localTransform;
+
+            }
+            else
+            {
+                _globalTransform = _localTransform;
+            }    
+
         }
 
 

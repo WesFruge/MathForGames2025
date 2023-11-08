@@ -101,7 +101,6 @@ namespace MathForGames2025
                 Update(deltaTime);
 
                 lastTime = currentTime;
-                
             }
 
             End();

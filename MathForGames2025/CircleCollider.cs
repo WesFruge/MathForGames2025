@@ -30,7 +30,7 @@ namespace MathForGames2025
         public override bool CheckCollisionCircle(CircleCollider collider)
         {
             float radius = Radius + collider.Radius;
-            float distance = Vector2.GetDistance(Owner.Position, collider.Owner.Position);
+            float distance = Vector2.GetDistance(Owner.LocalPosition, collider.Owner.LocalPosition);
             if(radius >= distance)
             {
                 return true;
@@ -41,7 +41,7 @@ namespace MathForGames2025
 
         public override void Draw()
         { 
-            Raylib.DrawCircleLines((int)Owner.Position.X, (int)Owner.Position.Y, Radius, Color.GREEN);
+            Raylib.DrawCircleLines((int)Owner.LocalPosition.X, (int)Owner.LocalPosition.Y, Radius, Color.GREEN);
         }
 
 

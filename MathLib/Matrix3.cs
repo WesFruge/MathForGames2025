@@ -29,7 +29,9 @@ namespace MathForGames2025
         {
             get
             {
-                return new Matrix3(1, 0, 0, 0, 1, 0, 0, 0, 1);
+                return new Matrix3(1, 0, 0, 
+                                   0, 1, 0,
+                                   0, 0, 1);
             }
         }
 
@@ -39,12 +41,16 @@ namespace MathForGames2025
         }
         public static Matrix3 CreateTranslation(float x, float y)
         {
-            return new Matrix3(0, 0, x, 0, 0, y, 0, 0, 1);
+            return new Matrix3(1, 0, x, 
+                               0, 1, y, 
+                               0, 0, 1);
         }
 
         public static Matrix3 CreateScale(float x, float y)
         {
-            return new Matrix3(x, 0, 0, 0, y, 0, 0, 0, 1);
+            return new Matrix3(x, 0, 0, 
+                               0, y, 0, 
+                               0, 0, 1);
         }
 
 

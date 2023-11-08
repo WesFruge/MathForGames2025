@@ -11,6 +11,7 @@ namespace MathForGames2025
     internal class Player : Character
     {
         private float _speed = 100.0f;
+        
 
         public Player(Icon icon, Vector2 position) :base(icon, position)
         {
@@ -27,8 +28,6 @@ namespace MathForGames2025
 
         public override void Update(float deltaTime)
         {
-            base.Update(deltaTime);
-
             Vector2 direction = new Vector2();
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_S))
@@ -59,16 +58,16 @@ namespace MathForGames2025
 
             if(Raylib.IsKeyDown(KeyboardKey.KEY_E))
             {
-                Rotate(5 * deltaTime);
+                Rotate(5f * deltaTime);
             }
             else if (Raylib.IsKeyDown(KeyboardKey.KEY_Q))
             {
-                Rotate(-5 * deltaTime);
+                Rotate(-5f * deltaTime);
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
             {
-                Scale(2,2);
+                Scale(2f,2f);
             }
             else if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN))
             {
@@ -82,9 +81,13 @@ namespace MathForGames2025
             ActorIcon = newIcon;
 
 
-            Velocity = direction.GetNormalized() * _speed;
+            Velocity = direction.GetNormalized() * _speed * deltaTime;
+
+            Console.WriteLine(Velocity.X + " " + Velocity.Y);
 
             Translate(Velocity.X, Velocity.Y);
+
+            base.Update(deltaTime);
         }
 
         public override void OnCollison(Actor other)
