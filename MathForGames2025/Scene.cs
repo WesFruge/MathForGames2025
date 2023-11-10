@@ -86,6 +86,26 @@ namespace MathForGames2025
                 }
 
                 _actors[i].Update(deltaTime);
+
+                if (_actors[i].AttachedCollider == null)
+                    continue;
+                
+                //Loop to see if this actor collided with any other actor.
+                for (int j = 0; j < _actors.Length; j++)
+                {
+                    //Skip this loop to prevent the actor from colliding with itself.
+                    if (_actors[i] == _actors[j])
+                    {
+                        continue;
+                    }
+
+                    //If a collision was detected between this actor and another...
+                    if (_actors[j].AttachedCollider != null && _actors[i].CheckCollision(_actors[j]))
+                    {
+                        //...call the function to let the actor know a collision occured.
+                        _actors[i].OnCollision(_actors[j]);
+                    }
+                }
             }
         }
 
