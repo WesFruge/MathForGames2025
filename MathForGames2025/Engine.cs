@@ -14,24 +14,25 @@ namespace MathForGames2025
         private static bool _applicationShouldClose;
         private const int _screenHeight = 1000;
         private const int _screenWidth = 1000;
+        private static TestScene _testScene;
 
         private static Icon[,] _buffer;
 
-        private static Scene  _currentScene;
+        private static Scene _currentScene;
 
         private Stopwatch _stopwatch = new Stopwatch();
 
-        
+
 
         private void Start()
         {
             Raylib.InitWindow(_screenWidth, _screenHeight, "Math For Games");
             Raylib.SetTargetFPS(0);
             _currentScene = new TestScene();
-            _buffer = new Icon [10, 10];
+            _buffer = new Icon[10, 10];
             _currentScene.Start();
             _stopwatch.Start();
-            
+
 
         }
 
@@ -41,9 +42,18 @@ namespace MathForGames2025
         }
 
 
-        public static void Render(Icon icon , Vector2 position)
+        public static void Render(Icon icon, Vector2 position)
         {
             Raylib.DrawText(icon.Symbol, (int)position.X, (int)position.Y, 74, icon.IconColor);
+        }
+
+
+        public static Actor AddActorToScene(Actor actorToSpawn)
+        {
+            _testScene.AddActor(actorToSpawn);
+
+            return actorToSpawn;
+            
         }
 
 

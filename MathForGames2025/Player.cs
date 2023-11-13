@@ -11,7 +11,7 @@ namespace MathForGames2025
     internal class Player : Character
     {
         private float _speed = 100.0f;
-        
+        private ProjectileSpawner _spawner;
 
         public Player(Icon icon, Vector2 position) :base(icon, position)
         {
@@ -19,7 +19,7 @@ namespace MathForGames2025
         }
         public Player (string spritePath, Vector2 position) :base(spritePath, position)
         {
-            
+            _spawner = new ProjectileSpawner(this, new Vector2(1,0), 50, "images/bullet.png");
         }
         public override void Start()
         {
@@ -67,11 +67,11 @@ namespace MathForGames2025
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
             {
-                Scale(2f,2f);
+                Scale(1.001f, 1.001f);
             }
             else if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN))
             {
-                Scale(-0.5f,-0.5f);
+                Scale(.991f, .991f);
             }
 
             Icon newIcon = ActorIcon;
@@ -82,8 +82,7 @@ namespace MathForGames2025
 
 
             Velocity = direction.GetNormalized() * _speed * deltaTime;
-
-            Console.WriteLine(Velocity.X + " " + Velocity.Y);
+          
 
             Translate(Velocity.X, Velocity.Y);
 

@@ -20,7 +20,7 @@ namespace MathForGames2025
         public override void Start()
         {
            
-            Vector2 startPosition = new Vector2(150, 150);
+            Vector2 startPosition = new Vector2(10, 10);
             Vector2 enemyStartPosition = new Vector2(400, 500);
 
 
@@ -29,7 +29,7 @@ namespace MathForGames2025
 
 
             _testPlayer = new Player("Images/player.png", startPosition);
-            _testPlayer.Size = new Vector2(100, 100);
+            _testPlayer.Size = new Vector2(50, 50);
 
 
             _testEnemy = new Enemy(_testPlayer, 1f, 160f,enemyIcon, enemyStartPosition);
@@ -42,32 +42,35 @@ namespace MathForGames2025
             _testEnemy.AttachedCollider = enemyCollider;
 
 
-            Vector2 sunOrigin = new Vector2(0,0);
-            Vector2 planetOrigin = new Vector2(100, 100); 
-            Vector2 moonOrigin = new Vector2(100, 150);
+            Vector2 sunOrigin = new Vector2(500,500);
+            Vector2 planetOrigin = new Vector2(2, 2); 
+            Vector2 moonOrigin = new Vector2(2, 2);
 
 
             _sun = new Actor("Images/player.png", sunOrigin);
-            _sun.Size = new Vector2(10, 10);
+            _sun.Size = new Vector2(50, 50);
             CircleCollider sunCollider = new CircleCollider(50, _sun);
             _sun.AttachedCollider = sunCollider;
-            _sun.Parent = _testPlayer;
-
+          
+            
+            
             _planet = new Actor("Images/player.png", planetOrigin);
             _planet.Size = new Vector2(1,1);
             CircleCollider planetCollider = new CircleCollider(50, _planet);
             _planet.AttachedCollider = planetCollider;
             _planet.Parent = _sun;
+          
 
 
-            _moon = new Actor("Images/player.png", moonOrigin);
-            _moon.Size = new Vector2(25, 25);
+            _moon = new Actor("Images/bullet.png", moonOrigin);
+            _moon.Size = new Vector2(1, 1);
             CircleCollider moonCollider = new CircleCollider(50, _moon);
             _moon.AttachedCollider = moonCollider;
             _moon.Parent = _planet;
+     
 
 
-            AddActor(_testEnemy);
+            
             AddActor(_testPlayer);
             AddActor(_sun);
             AddActor(_planet);
@@ -86,9 +89,21 @@ namespace MathForGames2025
                 maxAngle = 0;
             }
 
+          Matrix4 ree = new Matrix4(0, 0, 0, 1,
+                                    0, 0, 2, 0,
+                                    0, 3, 0, 0,
+                                    4, 0, 0, 0);
+
+            Matrix4 tee = new Matrix4(0, 0, 0, 1,
+                                      0, 0, 2, 0,
+                                      0, 3, 0, 0,
+                                      5, 0, 0, 0);
+
+            Matrix4 dee = ree * tee;
+
+            Console.WriteLine(ree * tee);
 
             _testPlayer.Start();
-            _testEnemy.Start();
             _moon.Start();
             _planet.Start();
             _sun.Start();

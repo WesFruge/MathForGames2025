@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MathLib;
 
 namespace MathForGames2025
 {
@@ -37,7 +38,7 @@ namespace MathForGames2025
 
         public static Matrix3 CreateRotation(float radians)
         {
-            return new Matrix3(MathF.Cos(radians), -MathF.Sin(radians), 0, MathF.Sin(radians), -MathF.Cos(radians), 0, 0, 0, 1);
+            return new Matrix3(MathF.Cos(radians), -MathF.Sin(radians), 0, MathF.Sin(radians), MathF.Cos(radians), 0, 0, 0, 1);
         }
         public static Matrix3 CreateTranslation(float x, float y)
         {
@@ -93,6 +94,14 @@ namespace MathForGames2025
                               
                              
         }
+
+        public static Vector3 operator *(Matrix3 a, Vector3 b)
+        {
+            return new Vector3(a.M00 * b.X + a.M01 * b.X+ a.M02 * b.X,
+                               a.M10 * b.Y + a.M11 * b.Y + a.M12 * b.Y,
+                               a.M20 * b.Z + a.M21 * b.Z + a.M22 * b.Z);
+        }
+
 
 
     }

@@ -134,7 +134,7 @@ namespace MathForGames2025
 
         public Vector2 Facing
         {
-            get { return new Vector2(_rotation.M00, _rotation.M10).GetNormalized(); }
+            get { return new Vector2(_globalTransform.M00, _globalTransform.M10).GetNormalized(); }
             
  
         }
