@@ -65,5 +65,10 @@ namespace MathLibrary
         {
 
         }
+
+        public static Vector3 operator *(Matrix3 a, Vector3 b)
+        {
+
+        }
     }
 }
