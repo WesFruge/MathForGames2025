@@ -20,12 +20,13 @@ namespace MathForGames2025
             Parent = _owner;
             _projectileSpeed = projectileSpeed;
             _projectileSpritePath = projectileSpritePath;
-
+            Engine.AddActorToScene(this);
         }
 
         public void SpawnProjectile()
         {
-            Bullets bullet = new Bullets(_projectileSpritePath, GlobalPosition, _owner, Facing*_projectileSpeed);
+            Bullets bullet = new Bullets(_projectileSpritePath, GlobalPosition, _owner, Parent.Facing*_projectileSpeed);
+            bullet.Size = new Vector2(20, 20);
             Engine.AddActorToScene(bullet);
         }
 

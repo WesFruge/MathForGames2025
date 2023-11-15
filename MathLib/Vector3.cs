@@ -71,7 +71,7 @@ namespace MathLib
 
         }
 
-        public static Vector3 operator *(Vector3 lhs, float scalar)
+        public static Vector3 operator *(float scalar, Vector3 lhs)
         {
             return new Vector3(lhs.X * scalar, lhs.Y * scalar, lhs.Z * scalar);
 

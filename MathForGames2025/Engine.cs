@@ -1,4 +1,4 @@
-﻿using MathLibrary;
+﻿using MathLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +11,7 @@ namespace MathForGames2025
 {
     internal class Engine
     {
-        private const int _screenWidth = 800;
-        private const int _screenHeight = 450;
-
+   
         private static bool _applicationShouldClose;
         private const int _screenHeight = 1000;
         private const int _screenWidth = 1000;
@@ -52,16 +50,6 @@ namespace MathForGames2025
             Raylib.DrawText(icon.Symbol, (int)position.X, (int)position.Y, 50, icon.IconColor);
         }
 
-        public static Scene GetCurrentScene()
-        {
-            return _currentScene;
-        }
-
-
-        public static void Render(Icon icon, Vector2 position)
-        {
-            Raylib.DrawText(icon.Symbol, (int)position.X, (int)position.Y, 74, icon.IconColor);
-        }
 
 
         public static Actor AddActorToScene(Actor actorToSpawn)

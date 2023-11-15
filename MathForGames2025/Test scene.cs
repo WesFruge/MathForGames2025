@@ -16,7 +16,7 @@ namespace MathForGames2025
         private Actor _moon;
         private Player _testPlayer;
         private Enemy _testEnemy;
-
+        private ProjectileSpawner _hiya;
         public override void Start()
         {
            
@@ -43,33 +43,34 @@ namespace MathForGames2025
 
 
             Vector2 sunOrigin = new Vector2(500,500);
-            Vector2 planetOrigin = new Vector2(2, 2); 
+            Vector2 planetOrigin = new Vector2(5, 5); 
             Vector2 moonOrigin = new Vector2(2, 2);
 
 
-            _sun = new Actor("Images/player.png", sunOrigin);
+            _sun = new Rotating_Actor(1, "Images/yikes.png", sunOrigin);
             _sun.Size = new Vector2(50, 50);
             CircleCollider sunCollider = new CircleCollider(50, _sun);
             _sun.AttachedCollider = sunCollider;
-          
             
             
-            _planet = new Actor("Images/player.png", planetOrigin);
+            
+            
+            _planet = new Rotating_Actor(1,"Images/player.png", planetOrigin);
             _planet.Size = new Vector2(1,1);
             CircleCollider planetCollider = new CircleCollider(50, _planet);
             _planet.AttachedCollider = planetCollider;
             _planet.Parent = _sun;
+            
           
 
 
-            _moon = new Actor("Images/bullet.png", moonOrigin);
+            _moon = new Rotating_Actor(1,"Images/enemy.png", moonOrigin);
             _moon.Size = new Vector2(1, 1);
             CircleCollider moonCollider = new CircleCollider(50, _moon);
             _moon.AttachedCollider = moonCollider;
             _moon.Parent = _planet;
-     
 
-
+            _hiya = new ProjectileSpawner(_planet, new Vector2(0,0), 100, "Images/Planet06");
             
             AddActor(_testPlayer);
             AddActor(_sun);
@@ -102,6 +103,10 @@ namespace MathForGames2025
             Matrix4 dee = ree * tee;
 
             Console.WriteLine(ree * tee);
+
+            _sun.Update(1900);
+            _planet.Update(1900);
+            _moon.Update(1900);
 
             _testPlayer.Start();
             _moon.Start();

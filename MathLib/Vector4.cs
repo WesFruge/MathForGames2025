@@ -84,7 +84,7 @@ namespace MathLib
 
         }
 
-        public static Vector4 operator *(Vector4 lhs, float scalar)
+        public static Vector4 operator *(float scalar, Vector4 lhs)
         {
             return new Vector4(lhs.X * scalar, lhs.Y * scalar, lhs.Z * scalar, lhs.W * scalar);
 

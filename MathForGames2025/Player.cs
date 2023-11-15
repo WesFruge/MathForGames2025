@@ -1,4 +1,4 @@
-﻿using MathLibrary;
+﻿using MathLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,9 +45,9 @@ namespace MathForGames2025
             {
                 direction += new Vector2(-1, 0);
             }
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_S))
             {
-                direction += new Vector2(1, 0);
+                direction += new Vector2(0, 1);
             }
 
             if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT_SHIFT))
@@ -77,6 +77,11 @@ namespace MathForGames2025
                 Scale(.991f, .991f);
             }
 
+            if(Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE))
+            {
+                _spawner.SpawnProjectile();
+            }
+
             Icon newIcon = ActorIcon;
 
             newIcon.IconColor = Color.GREEN;
@@ -92,7 +97,8 @@ namespace MathForGames2025
             base.Update(deltaTime);
         }
 
-        public override void OnCollison(Actor other)
+
+        public override void OnCollision(Actor other)
         {
 
             Icon newIcon = ActorIcon;
@@ -101,7 +107,7 @@ namespace MathForGames2025
 
             ActorIcon = newIcon;
 
-            base.OnCollison(other);
+            base.OnCollision(other);
         }
 
         public override void Draw()
