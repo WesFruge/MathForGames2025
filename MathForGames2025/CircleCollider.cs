@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MathLib;
 using Raylib_cs;
 
 namespace MathForGames2025
@@ -41,28 +40,7 @@ namespace MathForGames2025
 
         public override void Draw()
         {
-            Raylib.DrawCircleLines((int)Owner.GlobalPosition.X, (int)Owner.GlobalPosition.Y, Radius, Color.GREEN); ;
+            Raylib.DrawCircleLines((int)Owner.LocalPosition.X, (int)Owner.LocalPosition.Y, Radius, Color.GREEN);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

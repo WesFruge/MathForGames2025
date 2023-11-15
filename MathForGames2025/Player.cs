@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MathLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
-using MathLib;
 
 namespace MathForGames2025
 {
@@ -28,12 +28,11 @@ namespace MathForGames2025
 
         public override void Update(float deltaTime)
         {
+            base.Update(deltaTime);
+            //char direction = Engine.GetInput();
+
             Vector2 direction = new Vector2();
 
-            if (Raylib.IsKeyDown(KeyboardKey.KEY_S))
-            {
-                direction += new Vector2(0, 1);
-            }
             if (Raylib.IsKeyDown(KeyboardKey.KEY_W))
             {
                 direction += new Vector2(0, -1);
@@ -46,8 +45,12 @@ namespace MathForGames2025
             {
                 direction += new Vector2(-1, 0);
             }
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
+            {
+                direction += new Vector2(1, 0);
+            }
 
-            if(Raylib.IsKeyDown(KeyboardKey.KEY_LEFT_SHIFT))
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT_SHIFT))
             {
                 _speed = 200f;
             }

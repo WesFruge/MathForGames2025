@@ -1,16 +1,19 @@
-﻿using System;
+﻿using MathLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Raylib_cs;
 using System.Diagnostics;
-using MathLib;
 
 namespace MathForGames2025
 {
     internal class Engine
     {
+        private const int _screenWidth = 800;
+        private const int _screenHeight = 450;
+
         private static bool _applicationShouldClose;
         private const int _screenHeight = 1000;
         private const int _screenWidth = 1000;
@@ -34,6 +37,19 @@ namespace MathForGames2025
             _stopwatch.Start();
 
 
+            _currentScene = new TestScene();
+            _buffer = new Icon[10, 10];
+            _currentScene.Start();
+        }
+
+        public static Scene GetCurrentScene()
+        {
+            return _currentScene;
+        }
+
+        public static void Render(Icon icon, Vector2 position)
+        {
+            Raylib.DrawText(icon.Symbol, (int)position.X, (int)position.Y, 50, icon.IconColor);
         }
 
         public static Scene GetCurrentScene()
@@ -78,6 +94,11 @@ namespace MathForGames2025
             Raylib.CloseWindow();
         }
 
+        public static char GetInput()
+        {
+            return Console.ReadKey(true).KeyChar;
+        }
+
         public static void EndApplication()
         {
             _applicationShouldClose = true;
@@ -99,11 +120,12 @@ namespace MathForGames2025
             float currentTime = 0;
             float lastTime = 0;
             float deltaTime = 0;
-            
 
             while (!_applicationShouldClose && !Raylib.WindowShouldClose())
             {
-                currentTime = _stopwatch.ElapsedMilliseconds / 1000f;
+                currentTime = _stopwatch.ElapsedMilliseconds / 1000.0f;
+
+                Console.WriteLine(currentTime);
 
                 deltaTime = currentTime - lastTime;
 

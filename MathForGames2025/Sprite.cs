@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MathLib;
+using MathLibrary;
 
 namespace MathForGames2025
 {
     class Sprite
     {
-
         private Texture2D _texture;
 
         //Width of the loaded texture
@@ -85,24 +84,4 @@ namespace MathForGames2025
                 (float)(rotation * 180.0f / Math.PI), 1, Color.WHITE);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

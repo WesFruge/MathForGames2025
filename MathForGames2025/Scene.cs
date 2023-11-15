@@ -19,38 +19,39 @@ namespace MathForGames2025
                 _actors = new Actor[0];
             }
 
-
+            //4 actor slots
             Actor[] temp = new Actor[_actors.Length + 1];
 
-            for(int i = 0; i < _actors.Length; i++)
+            for (int i = 0; i < _actors.Length; i++)
             {
                 temp[i] = _actors[i];
             }
 
+            //4
             temp[_actors.Length] = actor;
 
             _actors = temp;
         }
 
-
-
         public bool Remove(Actor actorToRemove)
         {
-
-            if(actorToRemove == null)
+            if (actorToRemove == null)
             {
                 return false;
             }
 
-            if(_actors ==null || _actors.Length == 0)
+            if (_actors == null || _actors.Length == 0)
             {
                 return false;
             }
 
             Actor[] temp = new Actor[_actors.Length - 1];
-            int j = 0;
+
             bool actorRemoved = false;
-            for(int i = 0; i <_actors.Length; i++)
+
+            int j = 0;
+
+            for (int i = 0; i < _actors.Length; i++)
             {
                 if (_actors[i] == actorToRemove)
                 {
@@ -85,17 +86,26 @@ namespace MathForGames2025
                 {
                     _actors[i].Start();
                 }
+
                 _actors[i].Update(deltaTime);
 
-                for(int j = 0; j < _actors.Length; j++)
+                if (_actors[i].AttachedCollider == null)
+                    continue;
+                
+                //Loop to see if this actor collided with any other actor.
+                for (int j = 0; j < _actors.Length; j++)
                 {
+                    //Skip this loop to prevent the actor from colliding with itself.
                     if (_actors[i] == _actors[j])
                     {
                         continue;
                     }
-                    if (_actors[i].CheckCollision(_actors[j]))
+
+                    //If a collision was detected between this actor and another...
+                    if (_actors[j].AttachedCollider != null && _actors[i].CheckCollision(_actors[j]))
                     {
-                        _actors[i].OnCollison(_actors[j]);
+                        //...call the function to let the actor know a collision occured.
+                        _actors[i].OnCollision(_actors[j]);
                     }
                 }
             }

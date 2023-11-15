@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MathForGames2025", "MathFor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathLib", "MathLib\MathLib.csproj", "{48FC4AB3-BD38-4F56-9EDB-74EDB19E2582}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MathLibrary", "MathLibrary\MathLibrary.csproj", "{7A7AB28E-5695-45AC-AAD9-6869622502DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +19,10 @@ Global
 		{819C7A03-0571-4C23-A712-49FB7D789CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{819C7A03-0571-4C23-A712-49FB7D789CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{819C7A03-0571-4C23-A712-49FB7D789CA9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{48FC4AB3-BD38-4F56-9EDB-74EDB19E2582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48FC4AB3-BD38-4F56-9EDB-74EDB19E2582}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48FC4AB3-BD38-4F56-9EDB-74EDB19E2582}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48FC4AB3-BD38-4F56-9EDB-74EDB19E2582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A7AB28E-5695-45AC-AAD9-6869622502DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A7AB28E-5695-45AC-AAD9-6869622502DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A7AB28E-5695-45AC-AAD9-6869622502DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A7AB28E-5695-45AC-AAD9-6869622502DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
