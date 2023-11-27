@@ -53,21 +53,21 @@ namespace MathLib
             }
         }
 
-        public static Matrix4 CreateRotationZ(float radians)
+        public static Matrix4 CreateRotationX(float radians)
         {
             return new Matrix4(1,0,0,0,
                                0,MathF.Cos(radians),-MathF.Sin(radians),0, 
                                0,MathF.Sin(radians), MathF.Cos(radians),0, 
                                0,0,0,1);
         }
-        public static Matrix4 CreateRotationX(float radians)
+        public static Matrix4 CreateRotationY(float radians)
         {
             return new Matrix4(MathF.Cos(radians),0,MathF.Sin(radians),0,
                                0,1,0,0,
                                -MathF.Sin(radians),0,MathF.Cos(radians),0,
                                0,0,0,1);
         }
-        public static Matrix4 CreateRotationY(float radians)
+        public static Matrix4 CreateRotationZ(float radians)
         {
             return new Matrix4(MathF.Cos(radians),-MathF.Sin(radians),0,0,
                                MathF.Sin(radians),MathF.Cos(radians),0,0,

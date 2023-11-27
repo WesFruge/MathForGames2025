@@ -75,6 +75,11 @@ namespace MathLib
         {
             return new Vector3(lhs.X * scalar, lhs.Y * scalar, lhs.Z * scalar);
 
+        }  
+        public static Vector3 operator *( Vector3 lhs, float scalar)
+        {
+            return new Vector3(lhs.X * scalar, lhs.Y * scalar, lhs.Z * scalar);
+
         }
         public static Vector3 operator /(Vector3 lhs, float scalar)
         {
@@ -118,7 +123,9 @@ namespace MathLib
 
         public static Vector3 CrossProduct(Vector3 a, Vector3 b)
         {
-            return new Vector3();
+            return new Vector3(a.Y * b.Z - a.Z * b.Y,
+                              a.Z * b.X - a.X * b.Z,
+                              a.X * b.Y - a.Y * b.X);
         }
 
 

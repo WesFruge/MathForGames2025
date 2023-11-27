@@ -15,41 +15,25 @@ namespace MathForGames2025
         private Actor _planet;
         private Actor _moon;
         private Player _testPlayer;
-        private Enemy _testEnemy;
         private ProjectileSpawner _hiya;
         public override void Start()
         {
            
             Vector2 startPosition = new Vector2(10, 10);
-            Vector2 enemyStartPosition = new Vector2(400, 500);
-
-
-            Icon playerIcon = new Icon { IconColor = Color.BLACK, Symbol = "|>=0=<|" };
-            Icon enemyIcon = new Icon { IconColor = Color.RED, Symbol = ">-8v8-<" };
-
-
             _testPlayer = new Player("Images/player.png", startPosition);
             _testPlayer.Size = new Vector2(50, 50);
 
-
-            _testEnemy = new Enemy(_testPlayer, 1f, 160f,enemyIcon, enemyStartPosition);
-
             CircleCollider playerCollider = new CircleCollider(50, _testPlayer);
             _testPlayer.AttachedCollider = playerCollider;
-
-
-            CircleCollider enemyCollider = new CircleCollider(50, _testEnemy);
-            _testEnemy.AttachedCollider = enemyCollider;
-
 
             Vector2 sunOrigin = new Vector2(500,500);
             Vector2 planetOrigin = new Vector2(5, 5); 
             Vector2 moonOrigin = new Vector2(2, 2);
 
 
-            _sun = new Rotating_Actor(1, "Images/yikes.png", sunOrigin);
+            _sun = new Blackhole(1, "Images/yikes.png", sunOrigin);
             _sun.Size = new Vector2(50, 50);
-            CircleCollider sunCollider = new CircleCollider(50, _sun);
+            CircleCollider sunCollider = new CircleCollider(250, _sun);
             _sun.AttachedCollider = sunCollider;
             
             

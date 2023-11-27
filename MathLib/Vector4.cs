@@ -51,7 +51,7 @@ namespace MathLib
                 _z = value;
             }
         }
-        
+
         public float W
         {
             get
@@ -85,6 +85,11 @@ namespace MathLib
         }
 
         public static Vector4 operator *(float scalar, Vector4 lhs)
+        {
+            return new Vector4(lhs.X * scalar, lhs.Y * scalar, lhs.Z * scalar, lhs.W * scalar);
+
+        }
+        public static Vector4 operator *(Vector4 lhs, float scalar)
         {
             return new Vector4(lhs.X * scalar, lhs.Y * scalar, lhs.Z * scalar, lhs.W * scalar);
 
@@ -133,7 +138,7 @@ namespace MathLib
 
         public static float DotProduct(Vector4 a, Vector4 b)
         {
-            return a.X * b.X + a.Y * b.Y + a.Z* b.Z + a.W * b.W;
+            return a.X * b.X + a.Y * b.Y + a.Z * b.Z + a.W * b.W;
         }
 
         public static float GetDistance(Vector4 a, Vector4 b)
@@ -143,7 +148,18 @@ namespace MathLib
 
         }
 
-
-
+        public static Vector4 CrossProduct(Vector4 a, Vector4 b)
+        {
+            return new Vector4(a.Y * b.Z - a.Z * b.Y,
+                                a.Z * b.X - a.X * b.Z,
+                                a.X * b.Y - a.Y * b.X, 0);
+        }
+        public static Vector4 operator *(Matrix4 a, Vector4 b)
+        {
+            return new Vector4(a.M00 * b.X + a.M01 * b.Y + a.M02 * b.Z + a.M03 * b.W,
+                               a.M10 * b.X + a.M11 * b.Y + a.M12 * b.Z + a.M13 * b.W,
+                               a.M20 * b.X + a.M21 * b.Y + a.M22 * b.Z + a.M23 * b.W,
+                               a.M30 * b.X + a.M31 * b.Y + a.M32 * b.Z + a.M33 * b.W);
+        }
     }
 }

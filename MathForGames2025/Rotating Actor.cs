@@ -21,6 +21,7 @@ namespace MathForGames2025
         {
             base.Update(deltaTime);
             Rotate(deltaTime);
+        
         }
 
     }

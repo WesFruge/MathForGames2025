@@ -109,7 +109,10 @@ namespace MathForGames2025
                     }
                 }
             }
+
         }
+
+        
 
         public virtual void Draw()
         {

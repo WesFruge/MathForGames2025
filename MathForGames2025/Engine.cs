@@ -11,11 +11,11 @@ namespace MathForGames2025
 {
     internal class Engine
     {
-   
+        private static Actor[] _actorsToRemove = new Actor[0];
         private static bool _applicationShouldClose;
         private const int _screenHeight = 1000;
         private const int _screenWidth = 1000;
-        private static TestScene _testScene;
+        private static TestScene _anyword;
 
         private static Icon[,] _buffer;
 
@@ -30,14 +30,14 @@ namespace MathForGames2025
             Raylib.InitWindow(_screenWidth, _screenHeight, "Math For Games");
             Raylib.SetTargetFPS(0);
             _currentScene = new TestScene();
-            _buffer = new Icon[10, 10];
+          
             _currentScene.Start();
             _stopwatch.Start();
 
 
-            _currentScene = new TestScene();
-            _buffer = new Icon[10, 10];
-            _currentScene.Start();
+          
+           
+ 
         }
 
         public static Scene GetCurrentScene()
@@ -54,12 +54,46 @@ namespace MathForGames2025
 
         public static Actor AddActorToScene(Actor actorToSpawn)
         {
-            _testScene.AddActor(actorToSpawn);
+            _currentScene.AddActor(actorToSpawn);
 
             return actorToSpawn;
             
         }
 
+        /// <summary>
+        /// Adds actor to a list of actors to remove, that is cleared after update is called.
+        /// </summary>
+        /// <param name="actor">A refrence to the actor to remove from the current scene.</param>
+        public static void RemoveActorFromScene(Actor actor)
+        {
+            if (_actorsToRemove == null)
+            {
+                _actorsToRemove = new Actor[0];
+            }
+
+            //4 actor slots
+            Actor[] temp = new Actor[_actorsToRemove.Length + 1];
+
+            for (int i = 0; i < _actorsToRemove.Length; i++)
+            {
+                temp[i] = _actorsToRemove[i];
+            }
+
+            //4
+            temp[_actorsToRemove.Length] = actor;
+
+            _actorsToRemove = temp;
+        }
+
+        private void RemoveActors()
+        {
+            for(int i = 0; i < _actorsToRemove.Length; i++)
+            {
+                _anyword.Remove(_actorsToRemove[i]);
+            }
+
+            _actorsToRemove = new Actor[0];
+        }
 
         private void Draw()
         {
@@ -74,6 +108,7 @@ namespace MathForGames2025
         private void Update(float deltaTime)
         {
             _currentScene.Update(deltaTime);
+            RemoveActors();
         }
 
         private void End()
