@@ -12,8 +12,8 @@ namespace MathForGames2025
     {
 
         private Actor _sun;
-        private Actor _planet;
-        private Actor _moon;
+        private Actor _ship1;
+        private Actor _Ship2;
         private Player _testPlayer;
         private ProjectileSpawner _hiya;
         public override void Start()
@@ -33,33 +33,33 @@ namespace MathForGames2025
 
             _sun = new Blackhole(1, "Images/yikes.png", sunOrigin);
             _sun.Size = new Vector2(50, 50);
-            CircleCollider sunCollider = new CircleCollider(250, _sun);
+            CircleCollider sunCollider = new CircleCollider(100, _sun);
             _sun.AttachedCollider = sunCollider;
             
             
             
             
-            _planet = new Rotating_Actor(1,"Images/player.png", planetOrigin);
-            _planet.Size = new Vector2(1,1);
-            CircleCollider planetCollider = new CircleCollider(50, _planet);
-            _planet.AttachedCollider = planetCollider;
-            _planet.Parent = _sun;
+            _ship1 = new Rotating_Actor(1,"Images/player.png", planetOrigin);
+            _ship1.Size = new Vector2(1,1);
+            CircleCollider planetCollider = new CircleCollider(130, _ship1);
+            _ship1.AttachedCollider = planetCollider;
+            _ship1.Parent = _sun;
             
           
 
 
-            _moon = new Rotating_Actor(1,"Images/enemy.png", moonOrigin);
-            _moon.Size = new Vector2(1, 1);
-            CircleCollider moonCollider = new CircleCollider(50, _moon);
-            _moon.AttachedCollider = moonCollider;
-            _moon.Parent = _planet;
+            _Ship2 = new Rotating_Actor(1,"Images/enemy.png", moonOrigin);
+            _Ship2.Size = new Vector2(1, 1);
+            CircleCollider moonCollider = new CircleCollider(50, _Ship2);
+            _Ship2.AttachedCollider = moonCollider;
+            _Ship2.Parent = _ship1;
 
-            _hiya = new ProjectileSpawner(_planet, new Vector2(0,0), 100, "Images/Planet06");
+            
             
             AddActor(_testPlayer);
             AddActor(_sun);
-            AddActor(_planet);
-            AddActor(_moon);
+            AddActor(_ship1);
+            AddActor(_Ship2);
 
             base.Start();
 
@@ -88,14 +88,8 @@ namespace MathForGames2025
 
             Console.WriteLine(ree * tee);
 
-            _sun.Update(1900);
-            _planet.Update(1900);
-            _moon.Update(1900);
+            
 
-            _testPlayer.Start();
-            _moon.Start();
-            _planet.Start();
-            _sun.Start();
         }
 
     }

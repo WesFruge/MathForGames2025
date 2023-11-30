@@ -24,6 +24,18 @@ namespace MathForGames2025
         {
             base.Update(deltaTime);
             LocalPosition += _velocity * deltaTime;
+            
+        }
+
+        public override void OnCollision(Actor other)
+        {
+            base.OnCollision(other);
+
+            if(other != _owner)
+            {
+                Engine.RemoveActorFromScene(other);
+            }
+            
         }
 
     }

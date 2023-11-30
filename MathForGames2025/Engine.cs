@@ -89,7 +89,7 @@ namespace MathForGames2025
         {
             for(int i = 0; i < _actorsToRemove.Length; i++)
             {
-                _anyword.Remove(_actorsToRemove[i]);
+                _currentScene.Remove(_actorsToRemove[i]);
             }
 
             _actorsToRemove = new Actor[0];

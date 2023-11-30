@@ -58,7 +58,7 @@ namespace MathForGames2025
                     actorRemoved = true;
                     continue;
                 }
-                temp[i] = _actors[j];
+                temp[j] = _actors[i];
                 j++;
             }
             _actors = temp;

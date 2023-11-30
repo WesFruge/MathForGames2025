@@ -27,6 +27,8 @@ namespace MathForGames2025
         {
             Bullets bullet = new Bullets(_projectileSpritePath, GlobalPosition, _owner, Parent.Facing*_projectileSpeed);
             bullet.Size = new Vector2(20, 20);
+            CircleCollider bulletCollider = new CircleCollider(10, bullet);
+            bullet.AttachedCollider = bulletCollider;
             Engine.AddActorToScene(bullet);
         }
 

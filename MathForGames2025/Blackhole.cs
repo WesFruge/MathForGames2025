@@ -20,19 +20,33 @@ namespace MathForGames2025
             base.OnCollision(other);
             Vector2 blackholetoactor;
 
-            other.Translate(-1, -1);
 
-            Character character = (Character)other;
+
+            Character character = other as Character;
+            if(character == null)
+            {
+                return;
+            }
+
             blackholetoactor = GlobalPosition - other.GlobalPosition;
             blackholetoactor.Normalize();
-            blackholetoactor *= 5f;
+            blackholetoactor *= 100f;
             character.Velocity += blackholetoactor;
+
+            float distance = Vector2.GetDistance(GlobalPosition, other.GlobalPosition);
+
+            if(distance < 100)
+            {
+                Engine.RemoveActorFromScene(other);
+            }
+
         }
 
         public override void Update(float deltaTime)
         {
             base.Update(deltaTime);
            
+
            
            
         }
